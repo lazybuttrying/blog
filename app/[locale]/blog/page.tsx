@@ -3,12 +3,6 @@ import { CategoryObject } from "@/types/common";
 import { Link } from "@/libs/navigator";
 import { useLocale } from "next-intl";
 
-const locales = ["en", "ko"];
-
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
-
 const CategoryItem = ({
   item,
   prePath,

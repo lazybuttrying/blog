@@ -11,6 +11,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { useLocale } from "next-intl";
 import Image from "next/image";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 const locales = ["en", "ko"];
 
@@ -49,13 +50,13 @@ const CategoryItem = ({
 const BlogDetailPage = async ({
   params,
 }: {
-  params: { blogPath: string[] };
+  params: { locale: string; blogPath: string[] };
 }) => {
-  const locale = useLocale();
+  const locale = params.locale;
+  unstable_setRequestLocale(params.locale);
   const pathWithLocale = [locale, ...params.blogPath];
   const fullLocalePath = pathWithLocale.join("/");
   const fullPath = params.blogPath.join("/");
-  console.log(fullPath);
   const allPath = await getExpandedCategories(fullLocalePath);
 
   if (allPath !== null && allPath.length === 0) {
@@ -65,7 +66,7 @@ const BlogDetailPage = async ({
       <>
         <Breadcrumb paths={params.blogPath} />
         <ul>
-          {postList?.map((post) => (
+          {postList?.map((post: any) => (
             <li key={post.id}>
               <Link
                 href={`/blog/${fullPath}/${post.name}`}
