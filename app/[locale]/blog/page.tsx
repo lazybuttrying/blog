@@ -16,9 +16,11 @@ const CategoryItem = ({
     </li>
   ) : (
     Object.keys(item).map((key) => (
-      <li key={key}>
-        <Link href={`${prePath}/${key}`}>{key}</Link>
-        <ul className="pl-2">
+      <li key={key} className="py-4">
+        <Link href={`${prePath}/${key}`}>
+          <b className="text-lg">{key}</b>
+        </Link>
+        <ul className="pl-4">
           {item[key].map((subItem, index) => (
             <CategoryItem
               item={subItem}
