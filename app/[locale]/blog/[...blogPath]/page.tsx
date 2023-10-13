@@ -9,6 +9,11 @@ import Link from "next/link";
 import { twJoin } from "tailwind-merge";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
+import remarkToc from "remark-toc";
+import remarkGemoji from "remark-gemoji";
+import remarkMath from "remark-math";
+import rehypeMathjax from "rehype-mathjax";
+
 import { useLocale } from "next-intl";
 import Image from "next/image";
 import { unstable_setRequestLocale } from "next-intl/server";
@@ -124,7 +129,17 @@ const BlogDetailPage = async ({
               source={post}
               options={{
                 mdxOptions: {
-                  remarkPlugins: [remarkGfm],
+                  remarkPlugins: [
+                    remarkGfm,
+                    remarkToc,
+                    remarkGemoji,
+                    remarkMath,
+                    // remarkFlexibleMarkers,
+                    // require("remark-hint"),
+                    // require("remark-prism"),
+                    // require("remark-emoji"),
+                  ],
+                  rehypePlugins: [rehypeMathjax],
                 },
               }}
             />
