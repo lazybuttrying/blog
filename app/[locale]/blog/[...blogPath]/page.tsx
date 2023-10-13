@@ -13,7 +13,6 @@ import remarkToc from "remark-toc";
 import remarkGemoji from "remark-gemoji";
 import remarkMath from "remark-math";
 import rehypeMathjax from "rehype-mathjax";
-
 import { useLocale } from "next-intl";
 import Image from "next/image";
 import { unstable_setRequestLocale } from "next-intl/server";
@@ -130,10 +129,10 @@ const BlogDetailPage = async ({
               options={{
                 mdxOptions: {
                   remarkPlugins: [
+                    remarkMath,
                     remarkGfm,
                     remarkToc,
                     remarkGemoji,
-                    remarkMath,
                     // remarkFlexibleMarkers,
                     // require("remark-hint"),
                     // require("remark-prism"),
