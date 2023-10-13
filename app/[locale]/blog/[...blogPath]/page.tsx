@@ -15,6 +15,8 @@ import { unstable_setRequestLocale } from "next-intl/server";
 
 const locales = ["en", "ko"];
 
+export const revalidate = 60; // revalidate at 1min
+
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
